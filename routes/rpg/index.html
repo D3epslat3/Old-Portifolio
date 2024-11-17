@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro-RPG</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="geral">
+        <div>
+            <div class="center">
+                <div class="center">
+                    <h1 class="text">Registro RPG</h1>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <div>
+                <h2 class="texto1">Nome:</h2><input class="texto" type="text">
+            </div>
+            <div>
+                <h2 class="texto1">Idade:</h2><input class="texto" type="text">
+            </div>
+            <div>
+                <h2 class="texto1">Gênero:</h2><input class="texto" type="text">
+            </div>
+            <div>
+                <h2 class="texto1">Profissão:</h2>
+                <select id="proficao" name="cars" class="select">
+                    <option value="0">desempregado</option>
+                    <option value="1">Médico</option>
+                    <option value="2">Policial</option>
+                    <option value="3">fazendeiro</option>
+                    <option value="4">bombeiro</option>
+                    <option value="5">Mestre</option>
+                    <option value="6">ladrão</option>
+                </select>
+                <div>
+
+                    <h2 class="texto2">Antecedente</h2>
+                    <select id="antecedentes" name="cars" class="select">
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        function update(newValue) {
+            const ANTECEDENTES = {
+                1: ["Geral", "Cardiologista", "Veterinario", "Pisicolgo", "Cirurgião", "Socorrista"],
+
+                2: ["Civil", "Militar", "Federal",],
+
+                5:["Artes marciais", "Espadas"],
+
+                6:["Asaltante", "coontrabandista", "Mercenario"],
+            };
+
+            const antecedentesElement =
+                document.getElementById("antecedentes");
+            antecedentesElement.replaceChildren(
+                ...(ANTECEDENTES[newValue] ?? []).map(
+                    (antecedente, index) => {
+                        const option = document.createElement("option");
+                        option.value = index + 1;
+                        option.innerHTML = antecedente;
+                        return option;
+                    },
+                ),
+            );
+        }
+
+        const profissao = document.getElementById("proficao");
+        profissao.addEventListener("change", (event) => update(event.target.value));
+        update(0);
+    </script>
+</body>
+
+</html>
